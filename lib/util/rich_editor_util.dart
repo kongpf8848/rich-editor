@@ -5,6 +5,8 @@ import 'package:flutter_quill/embeds/mention.dart';
 import 'package:flutter_quill/embeds/unknown_type.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_quill/flutter_quill_extensions.dart';
+import 'package:rich_editor/util/theme_util.dart';
+import 'package:rich_editor/widget/mobile_toolbar.dart';
 
 QuillEditor createQuillEditor(BuildContext context,
     {required QuillController controller,
@@ -90,11 +92,11 @@ QuillEditor createQuillEditor(BuildContext context,
   return _editor;
 }
 
-QuillToolbar createQuillToolbar(BuildContext context,
+MobileToolbar createQuillToolbar(BuildContext context,
     {required QuillController controller,
     VoidCallback? afterButtonPressed,
     VoidCallback? onMentionPressed}) {
-  final _toolbar = QuillToolbar.basic(
+  final _toolbar = MobileToolbar.basic(
     controller: controller,
     afterButtonPressed: afterButtonPressed,
     onMentionPressed: onMentionPressed,
@@ -187,6 +189,4 @@ List<String> getMentionList(QuillController? controller) {
   return mentionList;
 }
 
-bool isLight(BuildContext context) {
-  return Theme.of(context).brightness == Brightness.light;
-}
+

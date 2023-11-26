@@ -6,7 +6,10 @@ import 'package:flutter_quill/embeds/mention.dart';
 import 'package:flutter_quill/embeds/unknown_type.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:flutter_quill/flutter_quill_extensions.dart';
-import 'package:rich_editor/rich_editor_util.dart';
+import 'package:rich_editor/theme/AppTheme.dart';
+import 'package:rich_editor/util/rich_editor_util.dart';
+import 'package:rich_editor/util/theme_util.dart';
+import 'package:rich_editor/widget/mobile_toolbar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,13 +20,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        isLight(context)
+            ? SystemUiLight
+            : SystemUiDark);
     return MaterialApp(
       title: 'RichEditor',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: appThemeData[AppTheme.PureLight],
+      darkTheme: appThemeData[AppTheme.PureDark],
       home: const MyHomePage(title: 'RichEditor'),
     );
   }
@@ -44,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _scrollController=ScrollController();
 
   QuillController? _quillController;
-  QuillToolbar? _quillToolbar;
+  MobileToolbar? _quillToolbar;
   QuillEditor? _quillEditor;
   int preTextLength = 0;
   ValueNotifier<bool> _editingStatusNotifier = ValueNotifier(true);
