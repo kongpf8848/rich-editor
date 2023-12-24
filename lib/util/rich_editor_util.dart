@@ -8,23 +8,43 @@ import 'package:flutter_quill/flutter_quill_extensions.dart';
 import 'package:rich_editor/util/theme_util.dart';
 import 'package:rich_editor/widget/mobile_toolbar.dart';
 
+QuillController createQuillController(BuildContext context,
+    {required String? summary}) {
+  Document? document;
+  if ((summary ?? "").isNotEmpty) {
+      try {
+        document = Document.fromJson(jsonDecode(summary!));
+      } catch (e) {
+        document = Document()..insert(0, summary);
+      }
+  }
+  document ??= Document();
+  final controller = QuillController(
+      document: document, selection: const TextSelection.collapsed(offset: 0));
+  return controller;
+}
+
+
 QuillEditor createQuillEditor(BuildContext context,
     {required QuillController controller,
-    required FocusNode focusNode,
-    required bool readOnly,
-    required String? userId,
-    String? hint = "",
-    bool scrollable = true,
-    bool autoFocus = true,
-    bool expands = false,
-    double paddingLeft = 0.0,
-    double paddingRight = 0.0,
-    double paddingTop = 0.0,
-    double paddingBottom = 0.0,
-    ScrollController? scrollController}) {
+      required FocusNode focusNode,
+      required bool readOnly,
+      required String? userId,
+      String? hint = "",
+      bool scrollable = true,
+      bool autoFocus = true,
+      bool expands = false,
+      double paddingLeft = 0.0,
+      double paddingRight = 0.0,
+      double paddingTop = 0.0,
+      double paddingBottom = 0.0,
+      ScrollController? scrollController}) {
   final _editor = QuillEditor(
       controller: controller,
       focusNode: focusNode,
+      // onLaunchUrl: (url) {
+      //   ZenNavigator.pushNamed(context, 'zenchat_browser', arguments: url);
+      // },
       scrollController: scrollController ?? ScrollController(),
       padding: EdgeInsets.only(
           left: paddingLeft,
@@ -65,8 +85,9 @@ QuillEditor createQuillEditor(BuildContext context,
             const VerticalSpacing(8, 0),
             const VerticalSpacing(0, 0),
             null),
-          link: TextStyle(
-              color: isLight(context)? Color(0xFF165DFF):Color(0xFF4D7EF7), decoration: TextDecoration.none),
+        link: TextStyle(
+            color: isLight(context) ? Color(0xFF165DFF) : Color(0xFF4D7EF7),
+            decoration: TextDecoration.none),
         placeHolder: DefaultTextBlockStyle(
             TextStyle(
               fontSize: 14,
@@ -87,16 +108,15 @@ QuillEditor createQuillEditor(BuildContext context,
         ...FlutterQuillEmbeds.builders(),
         MentionEmbedBuilder(current_uid: userId)
       ],
-      unknownEmbedBuilder: UnknownEmbedBuilder()
-  );
+      unknownEmbedBuilder: UnknownEmbedBuilder());
   return _editor;
 }
 
-MobileToolbar createQuillToolbar(BuildContext context,
+QuillToolbar createQuillToolbar(BuildContext context,
     {required QuillController controller,
-    VoidCallback? afterButtonPressed,
-    VoidCallback? onMentionPressed}) {
-  final _toolbar = MobileToolbar.basic(
+      VoidCallback? afterButtonPressed,
+      VoidCallback? onMentionPressed}) {
+  final _toolbar = QuillToolbar.basic(
     controller: controller,
     afterButtonPressed: afterButtonPressed,
     onMentionPressed: onMentionPressed,

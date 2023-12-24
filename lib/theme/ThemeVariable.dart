@@ -67,6 +67,9 @@ class ConstKey {
   static const String DIALOG_BORDER_COLOR = 'dialog_border_color';
   static const String DIALOG_TITLE_COLOR = 'dialog_title_color';
   static const String HINT_TXT_COLOR = 'hint_txt_color';
+
+  static const String MAIN_NAVIGATIONBAR_BG_COLOR_V2 =
+      "main_navigationbar_bg_color_v2";
 }
 
 Map<String, dynamic> darkMap = {
@@ -113,6 +116,7 @@ Map<String, dynamic> darkMap = {
   ConstKey.DIALOG_TITLE_COLOR: Color(0xffDAD9D5),
   ConstKey.HINT_TXT_COLOR: Color(0xffD9DCE5),
   ConstKey.NAVIGATIONBAR_WEBTAB_BG_COLOR: Color(0xFF17181C),
+  ConstKey.MAIN_NAVIGATIONBAR_BG_COLOR_V2: Color(0xFF020617),
 };
 
 Map<String, dynamic> lightMap = {
@@ -159,4 +163,5 @@ Map<String, dynamic> lightMap = {
   ConstKey.DIALOG_TITLE_COLOR: Color(0xff25262A),
   ConstKey.HINT_TXT_COLOR: Color(0xffB5B9C7),
   ConstKey.NAVIGATIONBAR_WEBTAB_BG_COLOR: Color(0xfff2f3f5),
+  ConstKey.MAIN_NAVIGATIONBAR_BG_COLOR_V2: Color(0xFFF3F4F6),
 };
