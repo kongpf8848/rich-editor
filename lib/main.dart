@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,9 @@ import 'package:rich_editor/theme/ThemeVariable.dart';
 import 'package:rich_editor/util/rich_editor_util.dart';
 import 'package:rich_editor/util/theme_util.dart';
 import 'package:rich_editor/widget/ZenNavigationBar.dart';
-import 'package:rich_editor/widget/mobile_toolbar.dart';
+import 'package:rich_editor/util/theme_util.dart';
+
+import 'User.dart';
 
 void main() {
   runApp(const MyApp());
@@ -69,6 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
   int preTextLength = 0;
   final ValueNotifier<bool> _editingStatusNotifier = ValueNotifier(false);
   final ValueNotifier<bool> _saveStatusNotifier = ValueNotifier(false);
+  final List<User> userList = [
+    User.fromJson({"uid": "1", "nickname": "张涛", "avatar": '', 'letter': "Z"}),
+    User.fromJson({"uid": "2", "nickname": "李伟", "avatar": '', 'letter': "L"}),
+    User.fromJson({"uid": "3", "nickname": "王小明", "avatar": '', 'letter': "W"}),
+    User.fromJson({"uid": "4", "nickname": "马冰", "avatar": '', 'letter': "M"}),
+    User.fromJson({"uid": "5", "nickname": "林圣贤", "avatar": '', 'letter': "L"}),
+    User.fromJson({"uid": "6", "nickname": "陈风", "avatar": '', 'letter': "C"}),
+    User.fromJson({"uid": "7", "nickname": "杨志", "avatar": '', 'letter': "Y"}),
+    User.fromJson({"uid": "8", "nickname": "韩磊", "avatar": '', 'letter': "H"}),
+    User.fromJson({"uid": "9", "nickname": "郭不凡", "avatar": '', 'letter': "G"}),
+  ];
 
   @override
   void initState() {
@@ -361,7 +375,102 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void _insertMention(User? user) {
+    if (user == null) {
+      return;
+    }
+    if (_quillController == null) {
+      return;
+    }
+    final index = _quillController!.selection.extentOffset;
+    var value = _quillController!.plainTextEditingValue.text;
+    if (value.trim().isNotEmpty) {
+      var newString = value.substring(index - 1, index);
+      if (newString == '@') {
+        _quillController!.document.delete(index - 1, 1);
+        _quillController!.updateSelection(
+          TextSelection.collapsed(
+            offset: _quillController!.selection.extentOffset + 1,
+          ),
+          ChangeSource.LOCAL,
+        );
+      }
+    }
+    var data = {
+      'index': '0',
+      'denotationChar': '',
+      'uid': user.uid,
+      'nickname': user.nickname,
+    };
+    _quillController!.document
+        .insert(_quillController!.selection.extentOffset, ' ');
+    _quillController!.updateSelection(
+      TextSelection.collapsed(
+        offset: _quillController!.selection.extentOffset + 1,
+      ),
+      ChangeSource.LOCAL,
+    );
+    _quillController!.document
+        .insert(_quillController!.selection.extentOffset, MentionEmbed(data));
+    _quillController!.updateSelection(
+      TextSelection.collapsed(
+        offset: _quillController!.selection.extentOffset + 1,
+      ),
+      ChangeSource.LOCAL,
+    );
+    _quillController!.document
+        .insert(_quillController!.selection.extentOffset, ' ');
+    _quillController!.updateSelection(
+      TextSelection.collapsed(
+        offset: _quillController!.selection.extentOffset + 1,
+      ),
+      ChangeSource.LOCAL,
+    );
+    _focusNode.requestFocus();
+  }
+
   void _onMentionPressed() async {
     debugPrint('+++++++++++++++++++++++_onMentionPressed');
+    bool light = isLight(context);
+    showModalBottomSheet(
+        context: context,
+        backgroundColor: light ? Color(0xffffffff) : Color(0xff25262A),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(9),
+            topRight: Radius.circular(9),
+          ),
+        ),
+        builder: (context) {
+          return ListView.builder(
+              itemCount: userList.length,
+              itemExtent: 50,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: Align(
+                    widthFactor: 1.0,
+                    alignment: Alignment.center,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.blue,
+                      child: Text(userList[index].letter),
+                    ),
+                  ),
+                  title: Text(
+                    userList[index].nickname,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        color: isLight(context)
+                            ? Color(0xFF1D2129)
+                            : Color(0xFFFFFFFF).withOpacity(0.7),
+                        fontSize: 16),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    _insertMention(userList[index]);
+                  },
+                );
+              });
+        });
   }
 }
