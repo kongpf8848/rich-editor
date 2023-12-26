@@ -87,8 +87,8 @@ QuillEditor createQuillEditor(BuildContext context,
             const VerticalSpacing(0, 0),
             null),
         link: TextStyle(
-            color: isLight(context) ? Color(0xFF165DFF) : Color(0xFF4D7EF7),
-            decoration: TextDecoration.none),
+            color: isLight(context) ? const Color(0xFF165DFF) : const Color(0xFF4D7EF7),
+            decoration: TextDecoration.underline),
         placeHolder: DefaultTextBlockStyle(
             TextStyle(
               fontSize: 14,
@@ -123,18 +123,18 @@ QuillToolbar createQuillToolbar(BuildContext context,
     afterButtonPressed: afterButtonPressed,
     onMentionPressed: onMentionPressed,
     color: isLight(context)
-        ? Color(0xFFFFFFFF)
-        : Color(0xFF658AFF).withOpacity(0.1),
+        ? const Color(0xFFFFFFFF)
+        : const Color(0xFF658AFF).withOpacity(0.1),
     iconTheme: QuillIconTheme(
         iconSelectedColor: isLight(context)
-            ? Color(0xFF165DFF)
-            : Color(0xFFFFFFFF).withOpacity(0.7),
+            ? const Color(0xFF165DFF)
+            : const Color(0xFFFFFFFF).withOpacity(0.7),
         iconUnselectedColor: isLight(context)
-            ? Color(0xFF4E5969)
-            : Color(0xFFFFFFFF).withOpacity(0.7),
+            ? const Color(0xFF4E5969)
+            : const Color(0xFFFFFFFF).withOpacity(0.7),
         iconSelectedFillColor: isLight(context)
-            ? Color(0xFFE8F3FF)
-            : Color(0xFF4F6EFF).withOpacity(0.16),
+            ? const Color(0xFFE8F3FF)
+            : const Color(0xFF4F6EFF).withOpacity(0.16),
         iconUnselectedFillColor: Colors.transparent,
         borderRadius: 4),
     multiRowsDisplay: false,
