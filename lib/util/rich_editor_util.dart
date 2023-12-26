@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/embeds/mention.dart';
-import 'package:flutter_quill/embeds/unknown_type.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_quill/flutter_quill_extensions.dart';
 import 'package:rich_editor/util/theme_util.dart';
-import 'package:rich_editor/widget/mobile_toolbar.dart';
+import 'package:rich_editor/quill/mobile_toolbar.dart';
+import 'package:rich_editor/quill/unknown_type.dart';
+import 'package:rich_editor/quill/mention_type.dart';
+import 'package:rich_editor/quill/divider_type.dart';
 
 QuillController createQuillController(BuildContext context,
     {required String? summary}) {
@@ -106,7 +107,8 @@ QuillEditor createQuillEditor(BuildContext context,
       showCursor: !readOnly,
       embedBuilders: [
         ...FlutterQuillEmbeds.builders(),
-        MentionEmbedBuilder(current_uid: userId)
+        MentionEmbedBuilder(currentUid: userId),
+        DividerEmbedBuilder()
       ],
       unknownEmbedBuilder: UnknownEmbedBuilder());
   return _editor;
@@ -162,8 +164,7 @@ QuillToolbar createQuillToolbar(BuildContext context,
         showCameraButton: false,
         showImageButton: false,
         showVideoButton: false,
-        showFormulaButton: false,
-        showDividerButton: true),
+        showFormulaButton: false),
   );
   return _toolbar;
 }
@@ -198,7 +199,7 @@ List<String> getMentionList(QuillController? controller) {
       if (userInfo != null && userInfo is Map) {
         var uid = userInfo["uid"];
         var nickname = userInfo["nickname"];
-        if (uid != null && uid != '1' && uid != '2') {
+        if (uid != null) {
           if (!mentionList.contains(uid)) {
             mentionList.add(uid);
           }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 
-
 class DividerButton extends StatelessWidget {
   const DividerButton({
     required this.icon,
@@ -73,7 +72,7 @@ class DividerButton extends StatelessWidget {
       controller.formatSelection(Attribute.clone(attr, null));
     }
 
-    controller.document.insert(index + 1, BlockEmbed.divider());
+    controller.document.insert(index + 1, const BlockEmbed("divider", true));
     controller.updateSelection(
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
@@ -90,3 +89,4 @@ class DividerButton extends StatelessWidget {
     );
   }
 }
+

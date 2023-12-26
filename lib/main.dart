@@ -1,24 +1,19 @@
-import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_quill/embeds/mention.dart';
-import 'package:flutter_quill/embeds/unknown_type.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
-import 'package:flutter_quill/flutter_quill_extensions.dart';
 import 'package:rich_editor/quill/history_button.dart';
 import 'package:rich_editor/theme/AppTheme.dart';
 import 'package:rich_editor/theme/ThemeVariable.dart';
 import 'package:rich_editor/util/rich_editor_util.dart';
 import 'package:rich_editor/util/theme_util.dart';
 import 'package:rich_editor/widget/ZenNavigationBar.dart';
-import 'package:rich_editor/util/theme_util.dart';
+import 'package:rich_editor/quill/mention_type.dart';
 
-import 'User.dart';
+import 'model/user.dart';
 
 void main() {
   runApp(const MyApp());
@@ -351,7 +346,7 @@ class _MyHomePageState extends State<MyHomePage> {
           scrollable: false,
           paddingBottom: 30.0,
           hint: "请输入内容",
-          userId: "");
+          userId: "1");
     }
     return _quillEditor ?? const SizedBox.shrink();
   }

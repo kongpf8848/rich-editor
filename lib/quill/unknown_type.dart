@@ -9,13 +9,13 @@ class UnknownEmbedBuilder extends EmbedBuilder {
 
   @override
   Widget build(
-    BuildContext context,
-    QuillController controller,
-    base.Embed node,
-    bool readOnly,
-    bool inline,
-    TextStyle textStyle,
-  ) {
+      BuildContext context,
+      QuillController controller,
+      base.Embed node,
+      bool readOnly,
+      bool inline,
+      TextStyle textStyle,
+      ) {
     return const SizedBox.shrink();
   }
 }
