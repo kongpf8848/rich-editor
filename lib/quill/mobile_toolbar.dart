@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
-import 'package:rich_editor/quill/mobile_style_button.dart';
+import 'package:rich_editor/quill/toolbar_style_button.dart';
+import 'package:rich_editor/quill/toolbar_link_button.dart';
 
 import '../util/theme_util.dart';
-import 'mention_button.dart';
+import 'toolbar_mention_button.dart';
 
 class MobileToolbar extends StatelessWidget {
   MobileToolbar({
@@ -149,8 +150,7 @@ class MobileToolbar extends StatelessWidget {
     widgetList.add(const SizedBox(width: 20));
 
     widgetList.add(
-        MobileStyleButton(
-          attribute: Attribute.link,
+        MobileLinkButton(
           icon: Icons.bolt,
           iconSize: toolbarIconSize,
           tooltip: 'link',
