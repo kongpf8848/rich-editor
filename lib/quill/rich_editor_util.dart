@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_quill/flutter_quill_extensions.dart';
-import 'package:rich_editor/util/theme_util.dart';
+import 'package:rich_editor/theme/theme_util.dart';
 import 'package:rich_editor/quill/mobile_toolbar.dart';
 import 'package:rich_editor/quill/unknown_type.dart';
 import 'package:rich_editor/quill/mention_type.dart';
@@ -134,61 +134,6 @@ MobileToolbar createMobileToolbar(BuildContext context,
             : const Color(0xFF4F6EFF).withOpacity(0.16),
         iconUnselectedFillColor: Colors.transparent,
         borderRadius: 4),
-  );
-  return _toolbar;
-}
-
-QuillToolbar createQuillToolbar(BuildContext context,
-    {required QuillController controller,
-      VoidCallback? afterButtonPressed,
-      VoidCallback? onMentionPressed}) {
-  final _toolbar = QuillToolbar.basic(
-    controller: controller,
-    afterButtonPressed: afterButtonPressed,
-    onMentionPressed: onMentionPressed,
-    color: isLight(context)
-        ? const Color(0xFFFFFFFF)
-        : const Color(0xFF658AFF).withOpacity(0.1),
-    iconTheme: QuillIconTheme(
-        iconSelectedColor: isLight(context)
-            ? const Color(0xFF165DFF)
-            : const Color(0xFFFFFFFF).withOpacity(0.7),
-        iconUnselectedColor: isLight(context)
-            ? const Color(0xFF4E5969)
-            : const Color(0xFFFFFFFF).withOpacity(0.7),
-        iconSelectedFillColor: isLight(context)
-            ? const Color(0xFFE8F3FF)
-            : const Color(0xFF4F6EFF).withOpacity(0.16),
-        iconUnselectedFillColor: Colors.transparent,
-        borderRadius: 4),
-    multiRowsDisplay: false,
-    showSuperscript: false,
-    showSubscript: false,
-    showDirection: false,
-    showAlignmentButtons: false,
-    showClearFormat: false,
-    showSearchButton: false,
-    showListCheck: false,
-    showFontFamily: false,
-    showFontSize: false,
-    showQuote: false,
-    showIndent: false,
-    showSmallButton: false,
-    showInlineCode: false,
-    showCodeBlock: false,
-    showDividers: false,
-    showUndo: false,
-    showRedo: false,
-    showColorButton: false,
-    showBackgroundColorButton: false,
-    showHighlight: true,
-    showMentionButton: true,
-    showLink: true,
-    embedButtons: FlutterQuillEmbeds.buttons(
-        showCameraButton: false,
-        showImageButton: false,
-        showVideoButton: false,
-        showFormulaButton: false),
   );
   return _toolbar;
 }

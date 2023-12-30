@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
+import 'package:rich_editor/quill/toolbar_divider_button.dart';
 import 'package:rich_editor/quill/toolbar_style_button.dart';
 import 'package:rich_editor/quill/toolbar_link_button.dart';
 
-import '../util/theme_util.dart';
+import '../theme/theme_util.dart';
 import 'toolbar_mention_button.dart';
 
 class MobileToolbar extends StatelessWidget {
@@ -16,6 +17,7 @@ class MobileToolbar extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  static const BackgroundAttribute highlight = BackgroundAttribute('#FF984E');
   final double toolbarIconSize = 24.0;
   final QuillController? controller;
   final QuillIconTheme? iconTheme;
@@ -157,6 +159,28 @@ class MobileToolbar extends StatelessWidget {
           controller: controller!,
           iconTheme: iconTheme,
           afterButtonPressed: afterButtonPressed,
+        ));
+    widgetList.add(const SizedBox(width: 20));
+
+    widgetList.add(
+        MobileStyleButton(
+          attribute: highlight,
+          icon: Icons.bolt,
+          iconSize: toolbarIconSize,
+          tooltip: 'highlight',
+          controller: controller!,
+          iconTheme: iconTheme,
+          afterButtonPressed: afterButtonPressed,
+        ));
+    widgetList.add(const SizedBox(width: 20));
+
+    widgetList.add(
+        DividerButton(
+          icon: Icons.bolt,
+          iconSize: toolbarIconSize,
+          tooltip: 'divider',
+          controller: controller!,
+          iconTheme: iconTheme,
         ));
     widgetList.add(const SizedBox(width: 20));
 

@@ -9,8 +9,8 @@ import 'package:rich_editor/quill/history_button.dart';
 import 'package:rich_editor/quill/mobile_toolbar.dart';
 import 'package:rich_editor/theme/AppTheme.dart';
 import 'package:rich_editor/theme/ThemeVariable.dart';
-import 'package:rich_editor/util/rich_editor_util.dart';
-import 'package:rich_editor/util/theme_util.dart';
+import 'package:rich_editor/quill/rich_editor_util.dart';
+import 'package:rich_editor/theme/theme_util.dart';
 import 'package:rich_editor/widget/ZenNavigationBar.dart';
 import 'package:rich_editor/quill/mention_type.dart';
 
@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _scrollController = ScrollController();
   final FocusNode _focusNode = FocusNode();
   QuillController? _quillController;
-  QuillToolbar? _quillToolbar;
+  MobileToolbar? _toolbar;
   QuillEditor? _quillEditor;
   final int maxLength = 10000;
   int preTextLength = 0;
@@ -195,11 +195,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-        _getMobileToolbar(),
         ValueListenableBuilder<bool>(
             valueListenable: _editingStatusNotifier,
             builder: ((context, value, _) {
-              return value ? _getQuillToolbar() : const SizedBox.shrink();
+              return value ? _getMobileToolbar() : const SizedBox.shrink();
             }))
       ],
     );
@@ -350,25 +349,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _getMobileToolbar() {
-    return Column(
-      children: [
-        Divider(
-          thickness: 0.8,
-          height: 0.8,
-          color: isLight(context)
-              ? Color(0xFFC9CDD4)
-              : Color(0xFF658AFF).withOpacity(0.1),
-        ),
-        createMobileToolbar(context,
-            controller: _quillController!,
-            afterButtonPressed: _focusNode.requestFocus,
-            onMentionPressed: _onMentionPressed)
-      ],
-    );
-  }
-
-  Widget _getQuillToolbar() {
-    _quillToolbar = createQuillToolbar(context,
+    _toolbar = createMobileToolbar(context,
         controller: _quillController!,
         afterButtonPressed: _focusNode.requestFocus,
         onMentionPressed: _onMentionPressed);
@@ -381,7 +362,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ? Color(0xFFC9CDD4)
               : Color(0xFF658AFF).withOpacity(0.1),
         ),
-        _quillToolbar!
+        _toolbar!
       ],
     );
   }
