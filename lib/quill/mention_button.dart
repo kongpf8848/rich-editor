@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 
-
-
 class MentionButton extends StatefulWidget {
   const MentionButton({
     required this.icon,

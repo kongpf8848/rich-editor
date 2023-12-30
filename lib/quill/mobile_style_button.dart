@@ -46,10 +46,10 @@ class MobileStyleButton extends StatefulWidget {
   final String? tooltip;
 
   @override
-  _ToggleStyleButtonState createState() => _ToggleStyleButtonState();
+  _MobileStyleButtonState createState() => _MobileStyleButtonState();
 }
 
-class _ToggleStyleButtonState extends State<MobileStyleButton> {
+class _MobileStyleButtonState extends State<MobileStyleButton> {
   bool? _isToggled;
 
   Style get _selectionStyle => widget.controller.getSelectionStyle();

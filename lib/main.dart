@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:rich_editor/quill/history_button.dart';
+import 'package:rich_editor/quill/mobile_toolbar.dart';
 import 'package:rich_editor/theme/AppTheme.dart';
 import 'package:rich_editor/theme/ThemeVariable.dart';
 import 'package:rich_editor/util/rich_editor_util.dart';
@@ -27,13 +28,9 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         isLight(context) ? SystemUiLight : SystemUiDark);
     if (Platform.isAndroid) {
-      SystemUiOverlayStyle style = SystemUiOverlayStyle(
+      SystemUiOverlayStyle style = const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
-
-        ///这是设置状态栏的图标和字体的颜色, 否则上面会有灰色的条
-        ///Brightness.light  一般都是显示为白色
-        ///Brightness.dark 一般都是显示为黑色
       );
       SystemChrome.setSystemUIOverlayStyle(style);
     }
@@ -198,6 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
+        _getMobileToolbar(),
         ValueListenableBuilder<bool>(
             valueListenable: _editingStatusNotifier,
             builder: ((context, value, _) {
@@ -349,6 +347,24 @@ class _MyHomePageState extends State<MyHomePage> {
           userId: "1");
     }
     return _quillEditor ?? const SizedBox.shrink();
+  }
+
+  Widget _getMobileToolbar() {
+    return Column(
+      children: [
+        Divider(
+          thickness: 0.8,
+          height: 0.8,
+          color: isLight(context)
+              ? Color(0xFFC9CDD4)
+              : Color(0xFF658AFF).withOpacity(0.1),
+        ),
+        createMobileToolbar(context,
+            controller: _quillController!,
+            afterButtonPressed: _focusNode.requestFocus,
+            onMentionPressed: _onMentionPressed)
+      ],
+    );
   }
 
   Widget _getQuillToolbar() {

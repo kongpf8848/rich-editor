@@ -114,6 +114,30 @@ QuillEditor createQuillEditor(BuildContext context,
   return _editor;
 }
 
+MobileToolbar createMobileToolbar(BuildContext context,
+    {required QuillController controller,
+      VoidCallback? afterButtonPressed,
+      VoidCallback? onMentionPressed}) {
+  final _toolbar = MobileToolbar(
+    controller: controller,
+    afterButtonPressed: afterButtonPressed,
+    onMentionPressed: onMentionPressed,
+    iconTheme: QuillIconTheme(
+        iconSelectedColor: isLight(context)
+            ? const Color(0xFF165DFF)
+            : const Color(0xFFFFFFFF).withOpacity(0.7),
+        iconUnselectedColor: isLight(context)
+            ? const Color(0xFF4E5969)
+            : const Color(0xFFFFFFFF).withOpacity(0.7),
+        iconSelectedFillColor: isLight(context)
+            ? const Color(0xFFE8F3FF)
+            : const Color(0xFF4F6EFF).withOpacity(0.16),
+        iconUnselectedFillColor: Colors.transparent,
+        borderRadius: 4),
+  );
+  return _toolbar;
+}
+
 QuillToolbar createQuillToolbar(BuildContext context,
     {required QuillController controller,
       VoidCallback? afterButtonPressed,
