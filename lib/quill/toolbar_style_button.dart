@@ -5,7 +5,7 @@ import 'package:flutter_quill/flutter_quill.dart' hide Text;
 typedef MobileStyleButtonBuilder = Widget Function(
     BuildContext context,
     Attribute attribute,
-    IconData icon,
+    String icon,
     Color? fillColor,
     bool? isToggled,
     VoidCallback? onPressed,
@@ -30,7 +30,7 @@ class MobileStyleButton extends StatefulWidget {
 
   final Attribute attribute;
 
-  final IconData icon;
+  final String icon;
   final double iconSize;
 
   final Color? fillColor;
@@ -122,7 +122,7 @@ class _MobileStyleButtonState extends State<MobileStyleButton> {
 Widget defaultMobileStyleButtonBuilder(
     BuildContext context,
     Attribute attribute,
-    IconData icon,
+    String icon,
     Color? fillColor,
     bool? isToggled,
     VoidCallback? onPressed,
@@ -147,77 +147,16 @@ Widget defaultMobileStyleButtonBuilder(
       theme.canvasColor) //Unselected icon fill color :
       : (iconTheme?.disabledIconFillColor ??
       (fillColor ?? theme.canvasColor)); //Disabled icon fill color
-  Widget? widget;
-  if (attribute == Attribute.h1) {
-    widget = Image.asset(
-      'images/quill/toolbar_h1.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else if (attribute == Attribute.h2) {
-    widget = Image.asset(
-      'images/quill/toolbar_h2.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else if (attribute == Attribute.bold) {
-    widget = Image.asset(
-      'images/quill/toolbar_bold.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else if (attribute == Attribute.underline) {
-    widget = Image.asset(
-      'images/quill/toolbar_underline.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else if (attribute == Attribute.strikeThrough) {
-    widget = Image.asset(
-      'images/quill/toolbar_strike.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else if (attribute == Attribute.italic) {
-    widget = Image.asset(
-      'images/quill/toolbar_italic.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else if (attribute == Attribute.ol) {
-    widget = Image.asset(
-      'images/quill/toolbar_ordered.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else if (attribute == Attribute.ul) {
-    widget = Image.asset(
-      'images/quill/toolbar_bullet.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else if (attribute == Attribute.highlight) {
-    widget = Image.asset(
-      'images/quill/toolbar_highlight.png',
-      width: iconSize,
-      height: iconSize,
-      color: iconColor,
-    );
-  } else {
-    widget = Icon(icon, size: iconSize, color: iconColor);
-  }
+  Widget widget = Image.asset(
+    icon,
+    width: iconSize,
+    height: iconSize,
+    color: iconColor,
+  );
   return QuillIconButton(
     highlightElevation: 0,
     hoverElevation: 0,
-    size: iconSize * kIconButtonFactor,
+    size: 36,
     icon: widget,
     fillColor: fill,
     onPressed: onPressed,

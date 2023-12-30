@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ import 'package:rich_editor/theme/ThemeVariable.dart';
 import 'package:rich_editor/quill/rich_editor_util.dart';
 import 'package:rich_editor/theme/theme_util.dart';
 import 'package:rich_editor/widget/ZenNavigationBar.dart';
-import 'package:rich_editor/quill/mention_type.dart';
+import 'package:rich_editor/quill/embed_mention.dart';
 
 import 'model/user.dart';
 
@@ -90,12 +89,14 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  /// 将光标跳转到编辑器尾部
   void _moveToQuillBottom() {
     Future.delayed(const Duration(milliseconds: 500)).then((value) {
       _quillController?.moveCursorToEnd();
     });
   }
 
+  /// 加载模版
   Future<void> _loadFromAssets() async {
     try {
       final summary = await rootBundle.loadString('assets/template.json');

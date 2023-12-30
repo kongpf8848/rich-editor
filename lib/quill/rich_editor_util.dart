@@ -5,9 +5,9 @@ import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_quill/flutter_quill_extensions.dart';
 import 'package:rich_editor/theme/theme_util.dart';
 import 'package:rich_editor/quill/mobile_toolbar.dart';
-import 'package:rich_editor/quill/unknown_type.dart';
-import 'package:rich_editor/quill/mention_type.dart';
-import 'package:rich_editor/quill/divider_type.dart';
+import 'package:rich_editor/quill/embed_unknown.dart';
+import 'package:rich_editor/quill/embed_mention.dart';
+import 'package:rich_editor/quill/embed_divider.dart';
 
 QuillController createQuillController(BuildContext context,
     {required String? summary}) {
