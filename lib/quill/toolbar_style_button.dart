@@ -3,16 +3,16 @@ import 'package:flutter_quill/extensions.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 
 typedef MobileStyleButtonBuilder = Widget Function(
-    BuildContext context,
-    Attribute attribute,
-    String icon,
-    Color? fillColor,
-    bool? isToggled,
-    VoidCallback? onPressed,
-    VoidCallback? afterPressed, [
-    double iconSize,
-    QuillIconTheme? iconTheme,
-    ]);
+  BuildContext context,
+  Attribute attribute,
+  String icon,
+  Color? fillColor,
+  bool? isToggled,
+  VoidCallback? onPressed,
+  VoidCallback? afterPressed, [
+  double iconSize,
+  QuillIconTheme? iconTheme,
+]);
 
 class MobileStyleButton extends StatefulWidget {
   const MobileStyleButton({
@@ -120,33 +120,33 @@ class _MobileStyleButtonState extends State<MobileStyleButton> {
 }
 
 Widget defaultMobileStyleButtonBuilder(
-    BuildContext context,
-    Attribute attribute,
-    String icon,
-    Color? fillColor,
-    bool? isToggled,
-    VoidCallback? onPressed,
-    VoidCallback? afterPressed, [
-      double iconSize = kDefaultIconSize,
-      QuillIconTheme? iconTheme,
-    ]) {
+  BuildContext context,
+  Attribute attribute,
+  String icon,
+  Color? fillColor,
+  bool? isToggled,
+  VoidCallback? onPressed,
+  VoidCallback? afterPressed, [
+  double iconSize = kDefaultIconSize,
+  QuillIconTheme? iconTheme,
+]) {
   final theme = Theme.of(context);
   final isEnabled = onPressed != null;
   final iconColor = isEnabled
       ? isToggled == true
-      ? (iconTheme?.iconSelectedColor ??
-      theme
-          .primaryIconTheme.color) //You can specify your own icon color
-      : (iconTheme?.iconUnselectedColor ?? theme.iconTheme.color)
+          ? (iconTheme?.iconSelectedColor ??
+              theme
+                  .primaryIconTheme.color) //You can specify your own icon color
+          : (iconTheme?.iconUnselectedColor ?? theme.iconTheme.color)
       : (iconTheme?.disabledIconColor ?? theme.disabledColor);
   final fill = isEnabled
       ? isToggled == true
-      ? (iconTheme?.iconSelectedFillColor ??
-      Theme.of(context).primaryColor) //Selected icon fill color
-      : (iconTheme?.iconUnselectedFillColor ??
-      theme.canvasColor) //Unselected icon fill color :
+          ? (iconTheme?.iconSelectedFillColor ??
+              Theme.of(context).primaryColor) //Selected icon fill color
+          : (iconTheme?.iconUnselectedFillColor ??
+              theme.canvasColor) //Unselected icon fill color :
       : (iconTheme?.disabledIconFillColor ??
-      (fillColor ?? theme.canvasColor)); //Disabled icon fill color
+          (fillColor ?? theme.canvasColor)); //Disabled icon fill color
   Widget widget = Image.asset(
     icon,
     width: iconSize,

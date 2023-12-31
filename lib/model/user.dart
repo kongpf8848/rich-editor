@@ -1,15 +1,14 @@
-
 class User {
   String avatar = "";
   String nickname = "";
-  String uid ="";
-  String letter="";
+  String uid = "";
+  String letter = "";
 
   User.fromJson(Map<String, dynamic> jsonMap) {
-    this.avatar = jsonMap["avatar"] ?? "";
-    this.nickname = jsonMap["nickname"] ?? "";
-    this.uid = jsonMap["uid"] ?? "";
-    this.letter = jsonMap["letter"]??"";
+    avatar = jsonMap["avatar"] ?? "";
+    nickname = jsonMap["nickname"] ?? "";
+    uid = jsonMap["uid"] ?? "";
+    letter = jsonMap["letter"] ?? "";
   }
 
   @override

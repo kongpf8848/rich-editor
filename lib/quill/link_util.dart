@@ -37,7 +37,7 @@ class _LinkDialogState extends State<LinkDialog> {
     final isLight = Theme.of(context).brightness == Brightness.light;
     return AlertDialog(
       backgroundColor:
-      isLight ? const Color(0xFFFFFFFF) : const Color(0xFF25262A),
+          isLight ? const Color(0xFFFFFFFF) : const Color(0xFF25262A),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       title: const Text(
         '编辑链接',
@@ -51,7 +51,7 @@ class _LinkDialogState extends State<LinkDialog> {
           fontWeight: FontWeight.bold),
       content: Container(
           constraints:
-          BoxConstraints.tightFor(width: MediaQuery.of(context).size.width),
+              BoxConstraints.tightFor(width: MediaQuery.of(context).size.width),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,7 +86,7 @@ class _LinkDialogState extends State<LinkDialog> {
                         overflow: TextOverflow.ellipsis),
                     decoration: InputDecoration(
                         contentPadding:
-                        const EdgeInsets.only(left: 15, right: 15),
+                            const EdgeInsets.only(left: 15, right: 15),
                         hintText: '输入文本',
                         hintStyle: TextStyle(
                             color: isLight
@@ -136,9 +136,9 @@ class _LinkDialogState extends State<LinkDialog> {
                         overflow: TextOverflow.ellipsis),
                     decoration: InputDecoration(
                       contentPadding:
-                      const EdgeInsets.only(left: 15, right: 15),
+                          const EdgeInsets.only(left: 15, right: 15),
                       border:
-                      const OutlineInputBorder(borderSide: BorderSide.none),
+                          const OutlineInputBorder(borderSide: BorderSide.none),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: isLight
@@ -169,30 +169,30 @@ class _LinkDialogState extends State<LinkDialog> {
                           textColor: isLight
                               ? const Color(0xFF4B7BFF)
                               : const Color(0xFFFFFFFF), onClick: () {
-                            Navigator.of(context).pop();
-                          })),
+                    Navigator.of(context).pop();
+                  })),
                   const SizedBox(
                     width: 15,
                   ),
                   Expanded(
                       child: getBottomButton(
-                        '确定',
-                        bgColor: isLight
-                            ? (_canPress()
+                    '确定',
+                    bgColor: isLight
+                        ? (_canPress()
                             ? const Color(0xFF165DFF)
                             : const Color(0xFF94BFFF))
-                            : (_canPress()
+                        : (_canPress()
                             ? const Color(0xFF658AFF)
                             : const Color(0xFF658AFF).withOpacity(0.6)),
-                        textColor: isLight
-                            ? (_canPress()
+                    textColor: isLight
+                        ? (_canPress()
                             ? const Color(0xFFFFFFFF)
                             : const Color(0xFFE8F3FF))
-                            : (_canPress()
+                        : (_canPress()
                             ? const Color(0xFFFFFFFF)
                             : const Color(0xFFFFFFFF).withOpacity(0.6)),
-                        onClick: _canPress() ? _applyLink : null,
-                      )),
+                    onClick: _canPress() ? _applyLink : null,
+                  )),
                 ]),
               )
             ],
@@ -254,9 +254,9 @@ class _LinkDialogState extends State<LinkDialog> {
 
 class TextLink {
   TextLink(
-      this.text,
-      this.link,
-      );
+    this.text,
+    this.link,
+  );
 
   final String text;
   final String link;

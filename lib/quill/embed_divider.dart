@@ -8,13 +8,13 @@ class DividerEmbedBuilder extends EmbedBuilder {
 
   @override
   Widget build(
-      BuildContext context,
-      QuillController controller,
-      base.Embed node,
-      bool readOnly,
-      bool inline,
-      TextStyle textStyle,
-      ) {
+    BuildContext context,
+    QuillController controller,
+    base.Embed node,
+    bool readOnly,
+    bool inline,
+    TextStyle textStyle,
+  ) {
     return const Column(children: [
       Divider(thickness: 1, color: Colors.grey),
     ]);

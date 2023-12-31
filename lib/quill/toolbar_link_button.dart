@@ -61,7 +61,7 @@ class _MobileLinkButtonState extends State<MobileLinkButton> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isToggled = _getLinkAttributeValue() != null;
-    final pressedHandler = () => _openLinkDialog(context);
+    pressedHandler() => _openLinkDialog(context);
     return QuillIconButton(
       tooltip: widget.tooltip,
       highlightElevation: 0,
@@ -73,12 +73,12 @@ class _MobileLinkButtonState extends State<MobileLinkButton> {
         height: widget.iconSize,
         color: isToggled
             ? (widget.iconTheme?.iconSelectedColor ??
-            theme.primaryIconTheme.color)
+                theme.primaryIconTheme.color)
             : (widget.iconTheme?.iconUnselectedColor ?? theme.iconTheme.color),
       ),
       fillColor: isToggled
           ? (widget.iconTheme?.iconSelectedFillColor ??
-          Theme.of(context).primaryColor)
+              Theme.of(context).primaryColor)
           : (widget.iconTheme?.iconUnselectedFillColor ?? theme.canvasColor),
       borderRadius: widget.iconTheme?.borderRadius ?? 2,
       onPressed: pressedHandler,
@@ -105,18 +105,14 @@ class _MobileLinkButtonState extends State<MobileLinkButton> {
 
         final len = widget.controller.selection.end - index;
         text ??=
-        len == 0 ? '' : widget.controller.document.getPlainText(index, len);
-        if ((link ?? '').isEmpty || (text ?? '').isEmpty) {
-          link = '';
-          text = '';
-        }
+            len == 0 ? '' : widget.controller.document.getPlainText(index, len);
         return LinkDialog(
           link: link,
           text: text,
         );
       },
     ).then(
-          (value) {
+      (value) {
         if (value != null) _linkSubmitted(value);
       },
     );

@@ -7,7 +7,7 @@ import 'package:rich_editor/quill/toolbar_link_button.dart';
 import '../theme/theme_util.dart';
 
 class MobileToolbar extends StatelessWidget {
-  const MobileToolbar({
+  MobileToolbar({
     required this.controller,
     this.iconTheme,
     this.onMentionPressed,
@@ -15,7 +15,6 @@ class MobileToolbar extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static const BackgroundAttribute highlight = BackgroundAttribute('#FF984E');
   final double toolbarIconSize = 24.0;
   final QuillController? controller;
   final QuillIconTheme? iconTheme;
@@ -157,7 +156,7 @@ class MobileToolbar extends StatelessWidget {
     widgetList.add(const SizedBox(width: 20));
 
     widgetList.add(MobileStyleButton(
-      attribute: highlight,
+      attribute: const BackgroundAttribute('#FF984E'),
       icon: 'images/quill/toolbar_highlight.png',
       iconSize: toolbarIconSize,
       tooltip: 'highlight',
@@ -174,8 +173,8 @@ class MobileToolbar extends StatelessWidget {
       icon: Image.asset('images/quill/toolbar_divider.png',
           width: 24, height: 24, color: iconColor),
       fillColor: fillColor,
-      onPressed: (){
-        _insertDivider(context,controller!);
+      onPressed: () {
+        _insertDivider(context, controller!);
       },
       afterPressed: afterButtonPressed,
       borderRadius: iconTheme?.borderRadius ?? 2,
@@ -183,6 +182,7 @@ class MobileToolbar extends StatelessWidget {
     widgetList.add(const SizedBox(width: 20));
 
     widgetList.add(const SizedBox(width: 16));
+
     return Expanded(
       child: ScrollConfiguration(
         behavior: _NoGlowBehavior(),
@@ -240,7 +240,8 @@ class MobileToolbar extends StatelessWidget {
     );
   }
 
-  Future<void> _insertDivider(BuildContext context,QuillController controller) async {
+  Future<void> _insertDivider(
+      BuildContext context, QuillController controller) async {
     final index = controller.selection.baseOffset;
 
     controller.document.insert(index, '\n');

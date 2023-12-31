@@ -6,8 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:rich_editor/quill/history_button.dart';
 import 'package:rich_editor/quill/mobile_toolbar.dart';
-import 'package:rich_editor/theme/AppTheme.dart';
-import 'package:rich_editor/theme/ThemeVariable.dart';
+import 'package:rich_editor/theme/app_theme.dart';
 import 'package:rich_editor/quill/rich_editor_util.dart';
 import 'package:rich_editor/theme/theme_util.dart';
 import 'package:rich_editor/widget/ZenNavigationBar.dart';
@@ -228,7 +227,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   )));
         });
     return ZenNavigationBar(
-      backgroundColor: findResource(ConstKey.NAVIGATIONBAR_BG_COLOR, context),
+      backgroundColor:
+          findResource(ConstKey.MAIN_NAVIGATIONBAR_BG_COLOR, context),
       leading: createCloseWidget(),
       middle: Container(
           alignment: Alignment.centerRight,
@@ -237,8 +237,8 @@ class _MyHomePageState extends State<MyHomePage> {
               if (value) {
                 return Row(mainAxisSize: MainAxisSize.min, children: [
                   createUndoRedoWidget(true),
-                  SizedBox(
-                    width: 24,
+                  const SizedBox(
+                    width: 16,
                   ),
                   createUndoRedoWidget(false),
                   saveWidget
@@ -272,6 +272,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void onClickSave() {
+    debugPrint('++++++++++++json:${getQuillJson(_quillController)}');
     _editingStatusNotifier.value = !_editingStatusNotifier.value;
     if (_editingStatusNotifier.value) {
       _focusNode.requestFocus();

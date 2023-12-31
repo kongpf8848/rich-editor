@@ -6,8 +6,8 @@ import 'package:flutter_quill/flutter_quill.dart' hide Text;
 
 class MentionEmbed extends Embeddable {
   const MentionEmbed(
-      dynamic value,
-      ) : super(mentionType, value);
+    dynamic value,
+  ) : super(mentionType, value);
 
   static const String mentionType = 'styled-mention';
 
@@ -30,18 +30,16 @@ class MentionEmbedBuilder extends EmbedBuilder {
 
   @override
   Widget build(
-      BuildContext context,
-      QuillController controller,
-      base.Embed node,
-      bool readOnly,
-      bool inline,
-      TextStyle textStyle,
-      ) {
+    BuildContext context,
+    QuillController controller,
+    base.Embed node,
+    bool readOnly,
+    bool inline,
+    TextStyle textStyle,
+  ) {
     final isLight = Theme.of(context).brightness == Brightness.light;
-    final disableColor =
-    isLight ? const Color(0xFF4E5969) : const Color(0xFF86909C);
     final primaryColor =
-    isLight ? const Color(0xFF165DFF) : const Color(0xFF4D7EF7);
+        isLight ? const Color(0xFF165DFF) : const Color(0xFF4D7EF7);
     final data = node.value.data;
     final text = "@${data['nickname']}";
     final isCurrentUser = currentUid == data['uid'];

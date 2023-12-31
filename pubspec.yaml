@@ -1,5 +1,5 @@
 name: rich_editor
-description: rich editor base on flutter-quill
+description: rich editor for Android，iOS base on flutter-quill
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.1.5 <4.0.0"
+  sdk: ">=3.1.0 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -36,8 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_quill: 7.4.9
   flutter_quill_extensions: 0.5.0
-
-#    path: /Users/kongpf/Desktop/jack/workspace/flutter/flutter-quill
 
 dev_dependencies:
   flutter_test:
@@ -61,9 +59,10 @@ flutter:
   uses-material-design: true
 
   assets:
+    - assets/
     - images/
     - images/quill/
-    - assets/
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -13,11 +13,11 @@ QuillController createQuillController(BuildContext context,
     {required String? summary}) {
   Document? document;
   if ((summary ?? "").isNotEmpty) {
-      try {
-        document = Document.fromJson(jsonDecode(summary!));
-      } catch (e) {
-        document = Document()..insert(0, summary);
-      }
+    try {
+      document = Document.fromJson(jsonDecode(summary!));
+    } catch (e) {
+      document = Document()..insert(0, summary);
+    }
   }
   document ??= Document();
   final controller = QuillController(
@@ -25,21 +25,20 @@ QuillController createQuillController(BuildContext context,
   return controller;
 }
 
-
 QuillEditor createQuillEditor(BuildContext context,
     {required QuillController controller,
-      required FocusNode focusNode,
-      required bool readOnly,
-      required String? userId,
-      String? hint = "",
-      bool scrollable = true,
-      bool autoFocus = true,
-      bool expands = false,
-      double paddingLeft = 0.0,
-      double paddingRight = 0.0,
-      double paddingTop = 0.0,
-      double paddingBottom = 0.0,
-      ScrollController? scrollController}) {
+    required FocusNode focusNode,
+    required bool readOnly,
+    required String? userId,
+    String? hint = "",
+    bool scrollable = true,
+    bool autoFocus = true,
+    bool expands = false,
+    double paddingLeft = 0.0,
+    double paddingRight = 0.0,
+    double paddingTop = 0.0,
+    double paddingBottom = 0.0,
+    ScrollController? scrollController}) {
   final _editor = QuillEditor(
       controller: controller,
       focusNode: focusNode,
@@ -87,7 +86,9 @@ QuillEditor createQuillEditor(BuildContext context,
             const VerticalSpacing(0, 0),
             null),
         link: TextStyle(
-            color: isLight(context) ? const Color(0xFF165DFF) : const Color(0xFF4D7EF7),
+            color: isLight(context)
+                ? const Color(0xFF165DFF)
+                : const Color(0xFF4D7EF7),
             decoration: TextDecoration.underline),
         placeHolder: DefaultTextBlockStyle(
             TextStyle(
@@ -116,8 +117,8 @@ QuillEditor createQuillEditor(BuildContext context,
 
 MobileToolbar createMobileToolbar(BuildContext context,
     {required QuillController controller,
-      VoidCallback? afterButtonPressed,
-      VoidCallback? onMentionPressed}) {
+    VoidCallback? afterButtonPressed,
+    VoidCallback? onMentionPressed}) {
   final _toolbar = MobileToolbar(
     controller: controller,
     afterButtonPressed: afterButtonPressed,
@@ -178,5 +179,3 @@ List<String> getMentionList(QuillController? controller) {
   });
   return mentionList;
 }
-
-
