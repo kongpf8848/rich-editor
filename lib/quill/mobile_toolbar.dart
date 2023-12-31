@@ -57,7 +57,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: Attribute.h1,
       icon: 'images/quill/toolbar_h1.png',
       iconSize: toolbarIconSize,
@@ -68,7 +68,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: Attribute.h2,
       icon: 'images/quill/toolbar_h2.png',
       iconSize: toolbarIconSize,
@@ -79,7 +79,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: Attribute.bold,
       icon: 'images/quill/toolbar_bold.png',
       iconSize: toolbarIconSize,
@@ -90,7 +90,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: Attribute.italic,
       icon: 'images/quill/toolbar_italic.png',
       iconSize: toolbarIconSize,
@@ -101,7 +101,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: Attribute.underline,
       icon: 'images/quill/toolbar_underline.png',
       iconSize: toolbarIconSize,
@@ -112,7 +112,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: Attribute.strikeThrough,
       icon: 'images/quill/toolbar_strike.png',
       iconSize: toolbarIconSize,
@@ -123,7 +123,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: Attribute.ol,
       icon: 'images/quill/toolbar_ordered.png',
       iconSize: toolbarIconSize,
@@ -134,7 +134,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: Attribute.ul,
       icon: 'images/quill/toolbar_bullet.png',
       iconSize: toolbarIconSize,
@@ -145,7 +145,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileLinkButton(
+    widgetList.add(ToolbarLinkButton(
       icon: Icons.bolt,
       iconSize: toolbarIconSize,
       tooltip: 'link',
@@ -155,7 +155,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(MobileStyleButton(
+    widgetList.add(ToolbarStyleButton(
       attribute: const BackgroundAttribute('#FF984E'),
       icon: 'images/quill/toolbar_highlight.png',
       iconSize: toolbarIconSize,

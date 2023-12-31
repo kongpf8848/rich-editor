@@ -3,8 +3,8 @@ import 'package:flutter_quill/flutter_quill.dart' hide Text;
 
 import 'link_util.dart';
 
-class MobileLinkButton extends StatefulWidget {
-  const MobileLinkButton({
+class ToolbarLinkButton extends StatefulWidget {
+  const ToolbarLinkButton({
     required this.controller,
     this.iconSize = kDefaultIconSize,
     this.icon,
@@ -28,10 +28,10 @@ class MobileLinkButton extends StatefulWidget {
   final LinkDialogAction? linkDialogAction;
 
   @override
-  _MobileLinkButtonState createState() => _MobileLinkButtonState();
+  _ToolbarLinkButtonState createState() => _ToolbarLinkButtonState();
 }
 
-class _MobileLinkButtonState extends State<MobileLinkButton> {
+class _ToolbarLinkButtonState extends State<ToolbarLinkButton> {
   void _didChangeSelection() {
     setState(() {});
   }
@@ -43,7 +43,7 @@ class _MobileLinkButtonState extends State<MobileLinkButton> {
   }
 
   @override
-  void didUpdateWidget(covariant MobileLinkButton oldWidget) {
+  void didUpdateWidget(covariant ToolbarLinkButton oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.controller != widget.controller) {
       oldWidget.controller.removeListener(_didChangeSelection);
@@ -61,7 +61,6 @@ class _MobileLinkButtonState extends State<MobileLinkButton> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isToggled = _getLinkAttributeValue() != null;
-    pressedHandler() => _openLinkDialog(context);
     return QuillIconButton(
       tooltip: widget.tooltip,
       highlightElevation: 0,
@@ -81,7 +80,7 @@ class _MobileLinkButtonState extends State<MobileLinkButton> {
               Theme.of(context).primaryColor)
           : (widget.iconTheme?.iconUnselectedFillColor ?? theme.canvasColor),
       borderRadius: widget.iconTheme?.borderRadius ?? 2,
-      onPressed: pressedHandler,
+      onPressed: ()=>_openLinkDialog(context),
       afterPressed: widget.afterButtonPressed,
     );
   }

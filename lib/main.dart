@@ -420,15 +420,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       ChangeSource.LOCAL,
     );
-    _focusNode.requestFocus();
   }
 
   void _onMentionPressed() async {
     debugPrint('+++++++++++++++++++++++_onMentionPressed');
-    bool light = isLight(context);
     showModalBottomSheet(
         context: context,
-        backgroundColor: light ? Color(0xffffffff) : Color(0xff25262A),
+        backgroundColor: isLight(context) ? Color(0xffffffff) : Color(0xff25262A),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(9),

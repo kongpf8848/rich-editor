@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/extensions.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 
-typedef MobileStyleButtonBuilder = Widget Function(
+typedef ToolbarStyleButtonBuilder = Widget Function(
   BuildContext context,
   Attribute attribute,
   String icon,
@@ -14,14 +14,14 @@ typedef MobileStyleButtonBuilder = Widget Function(
   QuillIconTheme? iconTheme,
 ]);
 
-class MobileStyleButton extends StatefulWidget {
-  const MobileStyleButton({
+class ToolbarStyleButton extends StatefulWidget {
+  const ToolbarStyleButton({
     required this.attribute,
     required this.icon,
     required this.controller,
     this.iconSize = kDefaultIconSize,
     this.fillColor,
-    this.childBuilder = defaultMobileStyleButtonBuilder,
+    this.childBuilder = defaultToolbarStyleButtonBuilder,
     this.iconTheme,
     this.afterButtonPressed,
     this.tooltip,
@@ -37,7 +37,7 @@ class MobileStyleButton extends StatefulWidget {
 
   final QuillController controller;
 
-  final MobileStyleButtonBuilder childBuilder;
+  final ToolbarStyleButtonBuilder childBuilder;
 
   ///Specify an icon theme for the icons in the toolbar
   final QuillIconTheme? iconTheme;
@@ -46,10 +46,10 @@ class MobileStyleButton extends StatefulWidget {
   final String? tooltip;
 
   @override
-  _MobileStyleButtonState createState() => _MobileStyleButtonState();
+  _ToolbarStyleButtonState createState() => _ToolbarStyleButtonState();
 }
 
-class _MobileStyleButtonState extends State<MobileStyleButton> {
+class _ToolbarStyleButtonState extends State<ToolbarStyleButton> {
   bool? _isToggled;
 
   Style get _selectionStyle => widget.controller.getSelectionStyle();
@@ -80,7 +80,7 @@ class _MobileStyleButtonState extends State<MobileStyleButton> {
   }
 
   @override
-  void didUpdateWidget(covariant MobileStyleButton oldWidget) {
+  void didUpdateWidget(covariant ToolbarStyleButton oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.controller != widget.controller) {
       oldWidget.controller.removeListener(_didChangeEditingValue);
@@ -119,7 +119,7 @@ class _MobileStyleButtonState extends State<MobileStyleButton> {
   }
 }
 
-Widget defaultMobileStyleButtonBuilder(
+Widget defaultToolbarStyleButtonBuilder(
   BuildContext context,
   Attribute attribute,
   String icon,

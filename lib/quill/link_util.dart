@@ -228,9 +228,9 @@ class _LinkDialogState extends State<LinkDialog> {
     if (_text.trim().isEmpty || _link.trim().isEmpty) {
       return false;
     }
-    // if (!linkRegExp.hasMatch(_link)) {
-    //   return false;
-    // }
+    if (!linkRegExp.hasMatch(_link)) {
+      return false;
+    }
 
     return true;
   }
