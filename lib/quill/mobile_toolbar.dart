@@ -7,7 +7,7 @@ import 'package:rich_editor/quill/toolbar_link_button.dart';
 import '../theme/theme_util.dart';
 
 class MobileToolbar extends StatelessWidget {
-  MobileToolbar({
+  const MobileToolbar({
     required this.controller,
     this.iconTheme,
     this.onMentionPressed,
@@ -262,7 +262,7 @@ class MobileToolbar extends StatelessWidget {
       controller.formatSelection(Attribute.clone(attr, null));
     }
 
-    controller.document.insert(index + 1, const BlockEmbed("divider", true));
+    controller.document.insert(index + 1, const BlockEmbed("divider", "true"));
     controller.updateSelection(
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
