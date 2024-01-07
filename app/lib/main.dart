@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:rich_editor/quill/history_button.dart';
 import 'package:rich_editor/quill/mobile_icon_theme.dart';
@@ -36,6 +37,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RichEditor',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates:const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('zh', 'CN'), // 中文简体
+        Locale('en', 'US'), // 美国英语
+      ],
+
       theme: appThemeData[AppTheme.PureLight],
       darkTheme: appThemeData[AppTheme.PureDark],
       home: const MyHomePage(title: 'RichEditor'),
