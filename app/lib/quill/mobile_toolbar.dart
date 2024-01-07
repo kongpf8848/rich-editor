@@ -5,6 +5,8 @@ import 'package:rich_editor/quill/toolbar_style_button.dart';
 import 'package:rich_editor/quill/toolbar_link_button.dart';
 
 import '../theme/theme_util.dart';
+import 'mobile_icon_button.dart';
+import 'mobile_icon_theme.dart';
 
 class MobileToolbar extends StatelessWidget {
   MobileToolbar({
@@ -17,7 +19,7 @@ class MobileToolbar extends StatelessWidget {
 
   final double toolbarIconSize = 24.0;
   final QuillController? controller;
-  final QuillIconTheme? iconTheme;
+  final MobileIconTheme? iconTheme;
   final VoidCallback? onMentionPressed;
   final VoidCallback? afterButtonPressed;
 
@@ -44,7 +46,7 @@ class MobileToolbar extends StatelessWidget {
 
     List<Widget> widgetList = [];
     widgetList.add(const SizedBox(width: 16));
-    widgetList.add(QuillIconButton(
+    widgetList.add(MobileIconButton(
       highlightElevation: 0,
       hoverElevation: 0,
       size: 36,
@@ -166,7 +168,7 @@ class MobileToolbar extends StatelessWidget {
     ));
     widgetList.add(const SizedBox(width: 20));
 
-    widgetList.add(QuillIconButton(
+    widgetList.add(MobileIconButton(
       highlightElevation: 0,
       hoverElevation: 0,
       size: 36,
@@ -249,7 +251,7 @@ class MobileToolbar extends StatelessWidget {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
 
     //清除格式
@@ -268,7 +270,7 @@ class MobileToolbar extends StatelessWidget {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
 
     controller.document.insert(index + 2, '\n');
@@ -276,7 +278,7 @@ class MobileToolbar extends StatelessWidget {
       TextSelection.collapsed(
         offset: controller.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
   }
 }

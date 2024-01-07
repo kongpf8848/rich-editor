@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 
+import 'mobile_icon_button.dart';
+import 'mobile_icon_theme.dart';
+
 class UndoRedoButton extends StatefulWidget {
   const UndoRedoButton({
     required this.icon,
@@ -17,7 +20,7 @@ class UndoRedoButton extends StatefulWidget {
   final double iconSize;
   final bool undo;
   final QuillController controller;
-  final QuillIconTheme? iconTheme;
+  final MobileIconTheme? iconTheme;
   final VoidCallback? afterButtonPressed;
   final String? tooltip;
 
@@ -39,11 +42,11 @@ class _UndoRedoButtonState extends State<UndoRedoButton> {
     widget.controller.changes.listen((event) async {
       _setIconColor();
     });
-    return QuillIconButton(
+    return MobileIconButton(
       tooltip: widget.tooltip,
       highlightElevation: 0,
       hoverElevation: 0,
-      size: widget.iconSize * kIconButtonFactor,
+      size: 36,
       icon: Image.asset(widget.icon,
           width: widget.iconSize, height: widget.iconSize, color: _iconColor),
       fillColor: fillColor,

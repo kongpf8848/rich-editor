@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:rich_editor/quill/history_button.dart';
+import 'package:rich_editor/quill/mobile_icon_theme.dart';
 import 'package:rich_editor/quill/mobile_toolbar.dart';
 import 'package:rich_editor/theme/app_theme.dart';
 import 'package:rich_editor/quill/rich_editor_util.dart';
@@ -286,7 +287,7 @@ class _MyHomePageState extends State<MyHomePage> {
         icon: undo ? "images/quill/ic_undo.png" : "images/quill/ic_redo.png",
         controller: _quillController!,
         undo: undo,
-        iconTheme: QuillIconTheme(
+        iconTheme: MobileIconTheme(
             iconUnselectedFillColor: Colors.transparent,
             iconSelectedFillColor: Colors.transparent,
             iconUnselectedColor: isLight(context)
@@ -386,7 +387,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TextSelection.collapsed(
             offset: _quillController!.selection.extentOffset + 1,
           ),
-          ChangeSource.LOCAL,
+          ChangeSource.local,
         );
       }
     }
@@ -402,7 +403,7 @@ class _MyHomePageState extends State<MyHomePage> {
       TextSelection.collapsed(
         offset: _quillController!.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
     _quillController!.document
         .insert(_quillController!.selection.extentOffset, MentionEmbed(data));
@@ -410,7 +411,7 @@ class _MyHomePageState extends State<MyHomePage> {
       TextSelection.collapsed(
         offset: _quillController!.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
     _quillController!.document
         .insert(_quillController!.selection.extentOffset, ' ');
@@ -418,7 +419,7 @@ class _MyHomePageState extends State<MyHomePage> {
       TextSelection.collapsed(
         offset: _quillController!.selection.extentOffset + 1,
       ),
-      ChangeSource.LOCAL,
+      ChangeSource.local,
     );
   }
 

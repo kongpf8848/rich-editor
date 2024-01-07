@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/extensions.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
+import 'package:rich_editor/quill/mobile_icon_button.dart';
+import 'package:rich_editor/quill/mobile_icon_theme.dart';
 
 typedef ToolbarStyleButtonBuilder = Widget Function(
   BuildContext context,
@@ -11,7 +13,7 @@ typedef ToolbarStyleButtonBuilder = Widget Function(
   VoidCallback? onPressed,
   VoidCallback? afterPressed, [
   double iconSize,
-  QuillIconTheme? iconTheme,
+  MobileIconTheme? iconTheme,
 ]);
 
 class ToolbarStyleButton extends StatefulWidget {
@@ -40,7 +42,7 @@ class ToolbarStyleButton extends StatefulWidget {
   final ToolbarStyleButtonBuilder childBuilder;
 
   ///Specify an icon theme for the icons in the toolbar
-  final QuillIconTheme? iconTheme;
+  final MobileIconTheme? iconTheme;
 
   final VoidCallback? afterButtonPressed;
   final String? tooltip;
@@ -128,7 +130,7 @@ Widget defaultToolbarStyleButtonBuilder(
   VoidCallback? onPressed,
   VoidCallback? afterPressed, [
   double iconSize = kDefaultIconSize,
-  QuillIconTheme? iconTheme,
+  MobileIconTheme? iconTheme,
 ]) {
   final theme = Theme.of(context);
   final isEnabled = onPressed != null;
@@ -153,7 +155,7 @@ Widget defaultToolbarStyleButtonBuilder(
     height: iconSize,
     color: iconColor,
   );
-  return QuillIconButton(
+  return MobileIconButton(
     highlightElevation: 0,
     hoverElevation: 0,
     size: 36,

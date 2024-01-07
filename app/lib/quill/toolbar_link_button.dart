@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
 
 import 'link_util.dart';
+import 'mobile_icon_button.dart';
+import 'mobile_icon_theme.dart';
 
 class ToolbarLinkButton extends StatefulWidget {
   const ToolbarLinkButton({
@@ -20,7 +22,7 @@ class ToolbarLinkButton extends StatefulWidget {
   final QuillController controller;
   final IconData? icon;
   final double iconSize;
-  final QuillIconTheme? iconTheme;
+  final MobileIconTheme? iconTheme;
   final QuillDialogTheme? dialogTheme;
   final VoidCallback? afterButtonPressed;
   final String? tooltip;
@@ -61,11 +63,11 @@ class _ToolbarLinkButtonState extends State<ToolbarLinkButton> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isToggled = _getLinkAttributeValue() != null;
-    return QuillIconButton(
+    return MobileIconButton(
       tooltip: widget.tooltip,
       highlightElevation: 0,
       hoverElevation: 0,
-      size: widget.iconSize * kIconButtonFactor,
+      size: 36,
       icon: Image.asset(
         'images/quill/toolbar_link.png',
         width: widget.iconSize,
@@ -171,6 +173,6 @@ class _ToolbarLinkButtonState extends State<ToolbarLinkButton> {
         TextSelection.collapsed(
           offset: index + value.text.length,
         ),
-        ChangeSource.LOCAL);
+        ChangeSource.local);
   }
 }

@@ -9,6 +9,8 @@ import 'package:rich_editor/quill/embed_unknown.dart';
 import 'package:rich_editor/quill/embed_mention.dart';
 import 'package:rich_editor/quill/embed_divider.dart';
 
+import 'mobile_icon_theme.dart';
+
 QuillController createQuillController(BuildContext context,
     {required String? summary}) {
   Document? document;
@@ -16,7 +18,8 @@ QuillController createQuillController(BuildContext context,
     try {
       document = Document.fromJson(jsonDecode(summary!));
     } catch (e) {
-      document = Document()..insert(0, summary);
+      document = Document()
+        ..insert(0, summary);
     }
   }
   document ??= Document();
@@ -27,30 +30,40 @@ QuillController createQuillController(BuildContext context,
 
 QuillEditor createQuillEditor(BuildContext context,
     {required QuillController controller,
-    required FocusNode focusNode,
-    required bool readOnly,
-    required String? userId,
-    String? hint = "",
-    bool scrollable = true,
-    bool autoFocus = true,
-    bool expands = false,
-    double paddingLeft = 0.0,
-    double paddingRight = 0.0,
-    double paddingTop = 0.0,
-    double paddingBottom = 0.0,
-    ScrollController? scrollController}) {
+      required FocusNode focusNode,
+      required bool readOnly,
+      required String? userId,
+      String? hint = "",
+      bool scrollable = true,
+      bool autoFocus = true,
+      bool expands = false,
+      double paddingLeft = 0.0,
+      double paddingRight = 0.0,
+      double paddingTop = 0.0,
+      double paddingBottom = 0.0,
+      ScrollController? scrollController}) {
   final _editor = QuillEditor(
+    scrollController: scrollController ?? ScrollController(),
+    focusNode: focusNode,
+    configurations: QuillEditorConfigurations(
       controller: controller,
-      focusNode: focusNode,
-      // onLaunchUrl: (url) {
-      //   ZenNavigator.pushNamed(context, 'zenchat_browser', arguments: url);
-      // },
-      scrollController: scrollController ?? ScrollController(),
+      placeholder: hint,
+      scrollable: scrollable,
+      autoFocus: autoFocus,
+      expands: expands,
+      readOnly: readOnly,
+      showCursor: !readOnly,
       padding: EdgeInsets.only(
           left: paddingLeft,
           right: paddingRight,
           top: paddingTop,
           bottom: paddingBottom),
+      embedBuilders: [
+        ...FlutterQuillEmbeds.defaultEditorBuilders(),
+        MentionEmbedBuilder(currentUid: userId),
+        DividerEmbedBuilder()
+      ],
+      unknownEmbedBuilder: UnknownEmbedBuilder(),
       customStyles: DefaultStyles(
         h1: DefaultTextBlockStyle(
             TextStyle(
@@ -100,30 +113,20 @@ QuillEditor createQuillEditor(BuildContext context,
             const VerticalSpacing(0, 0),
             null),
       ),
-      placeholder: hint,
-      scrollable: scrollable,
-      autoFocus: autoFocus,
-      expands: expands,
-      readOnly: readOnly,
-      showCursor: !readOnly,
-      embedBuilders: [
-        ...FlutterQuillEmbeds.builders(),
-        MentionEmbedBuilder(currentUid: userId),
-        DividerEmbedBuilder()
-      ],
-      unknownEmbedBuilder: UnknownEmbedBuilder());
+    ),
+    );
   return _editor;
 }
 
 MobileToolbar createMobileToolbar(BuildContext context,
     {required QuillController controller,
-    VoidCallback? afterButtonPressed,
-    VoidCallback? onMentionPressed}) {
+      VoidCallback? afterButtonPressed,
+      VoidCallback? onMentionPressed}) {
   final _toolbar = MobileToolbar(
     controller: controller,
     afterButtonPressed: afterButtonPressed,
     onMentionPressed: onMentionPressed,
-    iconTheme: QuillIconTheme(
+    iconTheme: MobileIconTheme(
         iconSelectedColor: isLight(context)
             ? const Color(0xFF165DFF)
             : const Color(0xFFFFFFFF).withOpacity(0.7),
